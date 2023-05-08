@@ -9,10 +9,15 @@ const App = () => {
     const [weather, setWeather] = useState({});
 
     const search = async () => {
-        const data = await fetchWeather(query);
-        setWeather(data);
-        setQuery('');
+        try {
+            const data = await fetchWeather(query);
+            setWeather(data);
+            setQuery('');
+        } catch (error) {
+            alert('Error: Invalid city name. Please try again.');
+        }
     };
+
 
     const fetchWeatherData = async (city) => {
         const data = await fetchWeather(city);
