@@ -24,7 +24,9 @@ export const getFavoriteCities = async () => {
 
 export const addFavoriteCity = async (city) => {
     const response = await axios.post(`${API_BASE_URL}/add`, city);
-    console.log('City added:', response.data);
-    return response.data;
+    const newCity = response.data;
+    console.log('newCity:', newCity);
+    return newCity;
 };
+
 

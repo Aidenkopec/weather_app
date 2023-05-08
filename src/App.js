@@ -46,13 +46,15 @@ const App = () => {
             };
 
             try {
-                const newCity = await addFavoriteCity(city);
-                setFavoriteCities(prevCities => [...prevCities, newCity]); // update state
+                await addFavoriteCity(city);
+                const cities = await getFavoriteCities(); // re-fetch the list of favorite cities
+                setFavoriteCities(cities);
             } catch (error) {
                 console.error('Error adding favorite city:', error);
             }
         }
     };
+
 
 
     return (
