@@ -5,14 +5,9 @@
  * The app fetches weather data from an external API and displays the results.
  */
 
-// Import required modules
-import React, {useState} from 'react';
-
-// Import custom fetchWeather function
+import React, {useEffect, useState} from 'react';
 import {fetchWeather} from './api/fetchWeather';
-// Import styling
 import './App.css';
-// import backgroundImage from './backgroundWeather.png';
 
 /**
  * App component
@@ -39,6 +34,22 @@ const App = () => {
         setWeather(data);
         setQuery('');
     };
+
+    // Function to fetch the weather data
+    const fetchWeatherData = async (city) => {
+        const data = await fetchWeather(city);
+        setWeather(data);
+    };
+
+    // Fetch weather data for the static city when the component mounts
+    useEffect(() => {
+        fetchWeatherData('New York');
+
+        // Return a cleanup function that resets the weather state
+        return () => {
+            setWeather({});
+        };
+    }, []);
 
     // Render main app components
     return (
