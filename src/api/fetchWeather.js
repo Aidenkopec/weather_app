@@ -3,10 +3,11 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const API_BASE_URL = 'http://localhost:3001/cities';
+// const API_BASE_URL = 'http://localhost:3001/cities';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const fetchWeather = async (query) => {
-    const { data } = await axios.get(API_URL, {
+    const {data} = await axios.get(API_URL, {
         params: {
             q: query,
             units: 'metric',
