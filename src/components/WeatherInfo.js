@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WeatherInfo = ({ weather }) => {
+const WeatherInfo = ({ weather, addToFavorites }) => {
     return (
         weather.main && (
             <div className="city">
@@ -19,6 +19,9 @@ const WeatherInfo = ({ weather }) => {
                         alt={weather.weather[0].description}
                     />
                     <p>{weather.weather[0].description}</p>
+                    <button onClick={addToFavorites} className="add-to-favorites-btn">
+                        Add to Favorites
+                    </button>
                 </div>
             </div>
         )
