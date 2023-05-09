@@ -5,7 +5,11 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['https://citycast.netlify.app', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 const uri = process.env.MONGODB_URI;
@@ -15,8 +19,6 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
 });
-
-
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
